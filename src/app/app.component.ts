@@ -9,10 +9,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  display = 'ng17';
+  display = '';
 
   handleClick(value: string | number) {
     console.log('clicked');
-    this.display = value.toString();
+    this.display += value.toString();
   }
 }
