@@ -1,0 +1,10 @@
+<input type="text" [(ngModel)]="heroName">
+<button (click)="addHero()">Add Hero</button>
+<ul>
+    @for (hero of heroes; track $index) {
+        <li>{{hero}}</li>
+    }
+    <!-- <li *ngFor="let hero of heroes; index as i">
+        {{hero}}
+    </li> -->
+</ul>
