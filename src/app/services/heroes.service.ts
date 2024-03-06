@@ -21,4 +21,8 @@ export class HeroesService {
   addHero(hero: Hero) {
     this._heroes.push(hero);
   }
+
+  removeHero(index: number) {
+    this._heroes.splice(index, 1);
+  }
 }
