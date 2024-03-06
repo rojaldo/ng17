@@ -1,2 +1,22 @@
-<!-- <app-calculator></app-calculator> -->
-<app-heroes></app-heroes>
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+	<li [ngbNavItem]="1">
+		<button ngbNavLink>Calculator</button>
+		<ng-template ngbNavContent>
+            <app-calculator></app-calculator>
+		</ng-template>
+	</li>
+	<li [ngbNavItem]="2">
+		<button ngbNavLink>Heroes</button>
+		<ng-template ngbNavContent>
+            <app-heroes></app-heroes>
+		</ng-template>
+	</li>
+	<li [ngbNavItem]="3">
+		<button ngbNavLink>Apod</button>
+		<ng-template ngbNavContent>
+
+		</ng-template>
+	</li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

@@ -2,11 +2,13 @@ import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../../../models/hero';
+import { HeroesListComponent } from '../heroes-list/heroes-list.component';
+import { HeroFormComponent } from '../hero-form/hero-form.component';
 
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, JsonPipe],
+  imports: [HeroesListComponent, HeroFormComponent],
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.scss'
 })
@@ -18,15 +20,8 @@ export class HeroesComponent {
     new Hero('Spiderman', 'The amazing Spiderman')
   ];
 
-  heroName = '';
-  heroDescription = '';
-
-  addHero() {
-    
-      this.heroes.push(new Hero(this.heroName, this.heroDescription));
-      this.heroName = '';
-      this.heroDescription = '';
-    
+  addHero(newHero: Hero) {
+      this.heroes.push(newHero);    
   }
 
 }

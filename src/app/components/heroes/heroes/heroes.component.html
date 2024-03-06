@@ -1,47 +1,5 @@
 <div class="container">
-    <div class="mb-3">
-        <label for="" class="form-label">Hero Name</label>
-        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder=""
-            [(ngModel)]="heroName" />
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label">Hero Description</label>
-        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder=""
-            [(ngModel)]="heroDescription" />
-    </div>
-    <button type="button" class="btn btn-primary" (click)="addHero()" [disabled]="heroName.length === 0">
-        Add Hero
-    </button>
-
-    <ul class="list-group list-group mt-4">
-        @for (hero of heroes; track $index) {
-        <li class="list-group-item"><b>{{hero.name}}: </b> {{hero.description}}</li>
-        }
-    </ul>
+    <app-hero-form (onAddHero)="addHero($event)"></app-hero-form>
+    <app-heroes-list [heroes]="heroes"></app-heroes-list>
 
 </div>
-
-
-
-<!-- @if (heroName !== '') {
-    <button (click)="addHero()">Add Hero</button>
-}@else {
-    <button disabled>Add Hero</button>
-} -->
-
-<!-- @switch (heroName.length) {
-    @case (0) {
-        <button disabled>Add Hero</button>
-    }
-    @default {
-        <button (click)="addHero()">Add Hero</button>
-    }
-
-} -->
-
-<!-- <ng-container >
-    <button *ngIf="heroName.length > 0; else elseTemplate" (click)="addHero()">Add Hero</button>
-</ng-container>
-<ng-template #elseTemplate>
-    <button disabled>Add Hero</button>
-</ng-template> -->
