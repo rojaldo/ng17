@@ -1,9 +1,10 @@
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hero } from '../../../models/hero';
 import { HeroesListComponent } from '../heroes-list/heroes-list.component';
 import { HeroFormComponent } from '../hero-form/hero-form.component';
+import { HeroesService } from '../../../services/heroes.service';
 
 @Component({
   selector: 'app-heroes',
@@ -12,16 +13,18 @@ import { HeroFormComponent } from '../hero-form/hero-form.component';
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.scss'
 })
-export class HeroesComponent {
+export class HeroesComponent implements OnInit{
 
-  heroes: Hero[] = [
-    new Hero('Batman', 'The dark knight'),
-    new Hero('Superman', 'Man of steel'),
-    new Hero('Spiderman', 'The amazing Spiderman')
-  ];
+  heroes: Hero[] = [];
+
+  constructor(private service: HeroesService) { }
+  ngOnInit(): void {
+    this.heroes = this.service.heroes;
+  }
 
   addHero(newHero: Hero) {
-      this.heroes.push(newHero);    
+      this.service.addHero(newHero);
+      this.heroes = this.service.heroes;
   }
 
 }
