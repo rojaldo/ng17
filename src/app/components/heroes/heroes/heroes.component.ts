@@ -18,6 +18,7 @@ export class HeroesComponent implements OnInit{
   heroes: Hero[] = [];
 
   constructor(private service: HeroesService) { }
+  
   ngOnInit(): void {
     this.heroes = this.service.heroes;
   }

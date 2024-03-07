@@ -12,13 +12,26 @@ import { JsonPipe } from '@angular/common';
 export class ApodComponent implements OnInit{
 
   apod: any = {};
+  errorMesssage = '';
+  error = false;
 
   constructor(private service: ApodService) { }
 
   ngOnInit(): void {
-    this.service.apodInfo$.subscribe((response: any) => {
-      this.apod = response;
-    });
+    const observer = {
+      next: (response: any) => {
+        this.apod = response;
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.error = true;
+        this.errorMesssage = error;
+      },
+      complete : () => {
+        console.log('Request complete');
+      }
+    }
+    this.service.apodInfo$.subscribe(observer);
     this.service.getApod();
   }
 }
