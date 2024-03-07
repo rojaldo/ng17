@@ -1,28 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Apod } from '../models/apod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApodService {
 
-  private _apodInfo: any = {};
-  apodInfo$ = new BehaviorSubject<any>(this._apodInfo);
+  private _apodInfo: Apod = new Apod();
+  apodInfo$ = new BehaviorSubject<Apod>(this._apodInfo);
 
 
   constructor(private http: HttpClient) { }
 
-  getApod() {
+  getApod(date?: string) {
     
     const baseUrl = 'https://api.nasa.gov/planetary/apod';
     const apiKey = 'DEMO_KEY';
-    const url = `${baseUrl}?api_key=${apiKey}`;
+    let url = `${baseUrl}?api_key=${apiKey}`;
+    date ? url = url.concat(`&date=${date}`) : url;
 
     const observer = {
       next: (response: any) => {
-        console.log(response);
-        this._apodInfo = response;
+        this._apodInfo = new Apod(response);
         this.apodInfo$.next(this._apodInfo);
       },
       error: (error: any) => {
@@ -30,9 +31,10 @@ export class ApodService {
         this.apodInfo$.error('Failed to retrieve APOD: ' + error.message);
       },
       complete: () => {
-        this.apodInfo$.complete();
+        
       }
     };
+    console.log('URL: ' + url);
     this.http.get(url).subscribe(observer);
   }
 }
