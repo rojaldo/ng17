@@ -18,6 +18,7 @@ export class ApodService {
       next: (response: any) => {
         console.log(response);
         this._apodInfo = response;
+        this.apodInfo$.next(this._apodInfo);
       },
       error: (error: any) => {
         console.error(error);
