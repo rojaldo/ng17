@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { Apod } from '../../../models/apod';
+import { ApodInfoComponent } from '../apod-info/apod-info.component';
+import { ApodPickerComponent } from '../apod-picker/apod-picker.component';
 
 @Component({
   selector: 'app-apod',
   standalone: true,
-  imports: [JsonPipe, NgbDatepickerModule, FormsModule, YouTubePlayer],
+  imports: [JsonPipe, ApodInfoComponent, ApodPickerComponent],
   templateUrl: './apod.component.html',
   styleUrl: './apod.component.scss'
 })
@@ -18,31 +20,19 @@ export class ApodComponent implements OnInit{
   apod: Apod = new Apod();
   errorMesssage = '';
   error = false;
+  // today date in string format yyyy-mm-dd
+  dateStr = new Date().toISOString().split('T')[0];
 
-  constructor(private service: ApodService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    const observer = {
-      next: (response: Apod) => {
-        console.log('next: ' + response);
-        this.apod = response;
-      },
-      error: (error: any) => {
-        console.error(error);
-        this.error = true;
-        this.errorMesssage = error;
-      }
-    }
-    this.service.apodInfo$.subscribe(observer);
-    this.service.getApod();
+
   }
 
-  dateSelected(date: any) {
-    console.log(date);
-    // date as a string in the format 'YYYY-MM-DD'
-    const dateStr = `${date.year}-${date.month}-${date.day}`;
-    console.log(dateStr);
+  dateSelected(date: string) {
     
-    this.service.getApod(dateStr);
+    this.dateStr = date;
+    console.log('Date selected: ' + this.dateStr);
+    
   }
 }

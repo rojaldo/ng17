@@ -1,23 +1,8 @@
 <div class="container">
 
     @if (!error) {
-        <ngb-datepicker #dp (dateSelect)="dateSelected($event)" />
-    <div class="row align-items-md-stretch">
-        <div class="col-md-12">
-            <div class="h-100 p-5 bg-light border rounded-3">
-                <h2>{{apod.title}}</h2>
-                <h4>{{apod.date}}</h4>
-                @if (apod.isImage) {
-                    <img [src]="apod.url" class="img-fluid" [alt]="apod.title" />
-                }@else if (apod.isVideo) {
-                    <youtube-player [videoId]="apod.videoId"/>
-                }
-                <p>
-                    {{apod.explanation}}
-                </p>
-            </div>
-        </div>
-    </div>
+        <app-apod-picker (onDateSelected)="dateSelected($event)"></app-apod-picker>
+        <app-apod-info [date]="dateStr"></app-apod-info>
     }@else {
     <div class="alert alert-danger" role="alert">
         <strong>Error</strong> {{errorMesssage}}
