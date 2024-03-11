@@ -1,6 +1,17 @@
 <div class="container">
+    <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            Toggle dropdown
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.alphAsc)">Alphabetic (asc)</button>
+            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.alphDesc)">Alphabetic (des)</button>
+            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.abvAsc)">Abv (asc)</button>
+            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.abvDesc)">Abv (desc)</button>
+        </div>
+    
     <div class="row justify-content-center align-items-center g-2">
-        @for (beer of beers; track $index) {
+        @for (beer of showBeers; track $index) {
             <div class="col-xs-12 col-md-6 col-xl-4">
                 <div class="card">
                     <img class="card-img-top mx-auto mt-2" [src]="beer.imageUrl" alt="Title" style="width: 70px;"/>
