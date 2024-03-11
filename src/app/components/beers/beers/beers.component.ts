@@ -3,6 +3,7 @@ import { BeersService } from '../../../services/beers.service';
 import { Beer } from '../../../models/beer';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { map, of } from 'rxjs';
+import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 
 enum OrderOption{
   alphAsc,
@@ -15,7 +16,7 @@ enum OrderOption{
 @Component({
   selector: 'app-beers',
   standalone: true,
-  imports: [NgbDropdownModule],
+  imports: [NgbDropdownModule, NgxSliderModule],
   templateUrl: './beers.component.html',
   styleUrl: './beers.component.scss'
 })
@@ -24,6 +25,14 @@ export class BeersComponent implements OnInit{
   beers: Beer[] = [];
   showBeers: Beer[] = [];
 
+  minValue = 4;
+  maxValue = 5;
+
+  options: Options = {
+    floor: 0,
+    ceil: 100,
+    step: 0.1
+  };
   orderOption = OrderOption;
 
   constructor(private service: BeersService) { }
@@ -71,6 +80,12 @@ export class BeersComponent implements OnInit{
         this.showBeers = this.beers;
     }
   }
+
+  handleRangeChange(range: any) {
+    console.log('Range change: ' + JSON.stringify(range));
+    this.showBeers = this.beers.filter(beer => beer.abv >= range.value && beer.abv <= range.highValue);
+  }
+
 
 }
 
