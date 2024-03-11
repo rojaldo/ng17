@@ -31,7 +31,6 @@ export class ApodService {
         this.apodInfo$.error('Failed to retrieve APOD: ' + error.message);
       },
       complete: () => {
-        
       }
     };
     console.log('URL: ' + url);
