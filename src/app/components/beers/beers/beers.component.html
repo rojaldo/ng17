@@ -1,31 +1,7 @@
 <div class="container">
-    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (userChange)="handleRangeChange($event)"></ngx-slider>
-    <div ngbDropdown class="d-inline-block">
-        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            Toggle dropdown
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.alphAsc)">Alphabetic (asc)</button>
-            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.alphDesc)">Alphabetic (des)</button>
-            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.abvAsc)">Abv (asc)</button>
-            <button ngbDropdownItem (click)="handleDropDownClick(orderOption.abvDesc)">Abv (desc)</button>
-        </div>
-    
-    <div class="row justify-content-center align-items-center g-2">
-        @for (beer of showBeers; track $index) {
-            <div class="col-xs-12 col-md-6 col-xl-4">
-                <div class="card">
-                    <img class="card-img-top mx-auto mt-2" [src]="beer.imageUrl" alt="Title" style="width: 70px;"/>
-                    <div class="card-body">
-                        <h4 class="card-title">{{beer.name}}</h4>
-                        <p class="card-text">{{beer.description}}</p>
-                        <p class="card-text">{{beer.abv}}</p>
-                    </div>
-                </div>
-                
-            </div>
-        }
-        
-    </div>
+
+    <app-beer-select (onSelection)="handleSelection($event)"></app-beer-select>
+
+    <app-beer-list [beers]="showBeers"></app-beer-list>
 
 </div>

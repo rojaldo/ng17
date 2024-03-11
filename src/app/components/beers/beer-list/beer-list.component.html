@@ -1,0 +1,16 @@
+<div class="row justify-content-center align-items-center g-2">
+    @for (beer of beers; track $index) {
+        <div class="col-xs-12 col-md-6 col-xl-4">
+            <div class="card">
+                <img class="card-img-top mx-auto mt-2" [src]="beer.imageUrl" alt="Title" style="width: 70px;"/>
+                <div class="card-body">
+                    <h4 class="card-title">{{beer.name}}</h4>
+                    <p class="card-text">{{beer.description}}</p>
+                    <p class="card-text">{{beer.abv}}</p>
+                </div>
+            </div>
+            
+        </div>
+    }
+    
+</div>

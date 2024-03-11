@@ -1,0 +1,11 @@
+<ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (userChange)="handleRangeChange($event)"></ngx-slider>
+<div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+        Toggle dropdown
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem (click)="handleDropDownClick(orderOption.alphAsc)">Alphabetic (asc)</button>
+        <button ngbDropdownItem (click)="handleDropDownClick(orderOption.alphDesc)">Alphabetic (des)</button>
+        <button ngbDropdownItem (click)="handleDropDownClick(orderOption.abvAsc)">Abv (asc)</button>
+        <button ngbDropdownItem (click)="handleDropDownClick(orderOption.abvDesc)">Abv (desc)</button>
+    </div>
