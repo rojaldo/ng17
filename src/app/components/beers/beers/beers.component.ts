@@ -9,13 +9,7 @@ import { BeerSelectComponent } from '../beer-select/beer-select.component';
 import { FilterBeersPipe } from '../../../pipes/filter-beers.pipe';
 import { OrderBeersPipe } from '../../../pipes/order-beers.pipe';
 import { AsyncPipe } from '@angular/common';
-
-enum OrderOption{
-  alphAsc,
-  alphDesc,
-  abvAsc,
-  abvDesc
-}
+import { OrderOption } from '../../../enums/order-option';
 
 @Component({
   selector: 'app-beers',

@@ -1,14 +1,7 @@
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-
-
-enum OrderOption{
-  alphAsc,
-  alphDesc,
-  abvAsc,
-  abvDesc
-}
+import { OrderOption } from '../../../enums/order-option';
 
 @Component({
   selector: 'app-beer-select',

@@ -1,13 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Beer } from '../models/beer';
 import { Observable, map } from 'rxjs';
-
-enum OrderOption{
-  alphAsc,
-  alphDesc,
-  abvAsc,
-  abvDesc
-}
+import { OrderOption } from '../enums/order-option';
 
 @Pipe({
   name: 'orderBeers',

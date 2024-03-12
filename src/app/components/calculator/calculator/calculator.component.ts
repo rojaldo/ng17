@@ -7,6 +7,7 @@ import { KeyboardComponent } from '../keyboard/keyboard.component';
   selector: 'app-calculator',
   standalone: true,
   imports: [DisplayComponent, KeyboardComponent],
+  providers: [CalculatorService],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss'
 })
@@ -17,11 +18,13 @@ export class CalculatorComponent implements OnInit{
   constructor(private service: CalculatorService) { }
 
   ngOnInit(): void {
-    this.info = this.service.display;
+    this.service.display$.subscribe(display => {
+      this.info = display;
+    });
   }
 
   handleClick(value: string | number) {
-    (typeof value === 'string') ? this.info = this.service.handleSymbol(value): this.info = this.service.handleNumber(value);
+    (typeof value === 'string') ? this.service.handleSymbol(value): this.service.handleNumber(value);
   }
 
 

@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Beer } from '../../../models/beer';
-import { CurrencyPipe, UpperCasePipe } from '@angular/common';
+import { UpperCasePipe } from '@angular/common';
 import { ShortenPipe } from '../../../pipes/shorten.pipe';
 import { FilterBeersPipe } from '../../../pipes/filter-beers.pipe';
 
@@ -11,13 +11,10 @@ import { FilterBeersPipe } from '../../../pipes/filter-beers.pipe';
   templateUrl: './beer-list.component.html',
   styleUrl: './beer-list.component.scss'
 })
-export class BeerListComponent implements OnChanges{
+export class BeerListComponent {
 
 
   @Input() beers: Beer[] | null = []
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('Beers changed: ' + JSON.stringify(changes));
-  }
 
 }

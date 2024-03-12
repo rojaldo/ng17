@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class FilterBeersPipe implements PipeTransform {
 
   transform(beers: Beer[], ...args: number[]): Observable<Beer[]> {
+    console.log('Filtering beers: ');
+    
     if(!args.length) return new Observable<Beer[]>(observer => {
       observer.next(beers);
       observer.complete();

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 enum State {
   INIT,
@@ -7,12 +8,11 @@ enum State {
   RESULT
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CalculatorService {
 
   private _display = '';
+  display$ = new BehaviorSubject<string>(this._display);
   private currentState = State.INIT;
   private firstFigure = 0;
   private operator = '';
@@ -25,10 +25,10 @@ export class CalculatorService {
 
   constructor() { }
 
-  handleSymbol(symbol: string): string {
+  handleSymbol(symbol: string): void{
     if (symbol === 'C') {
       this.clearCalculator();
-      return '';
+      this.display$.next(this._display);
     }
     switch (this.currentState) {
       case State.INIT:
@@ -60,7 +60,7 @@ export class CalculatorService {
       default:
         break;
     }
-    return this._display;
+    this.display$.next(this._display);
   }
 
   private readonly _isOperator = (symbol: string) => symbol === '+' || symbol === '-' || symbol === '*' || symbol === '/';
@@ -80,7 +80,7 @@ export class CalculatorService {
     }
   }
 
-  handleNumber(num: number): string {
+  handleNumber(num: number): void{
     switch (this.currentState) {
       case State.INIT:
         this.firstFigure = num;
@@ -104,7 +104,7 @@ export class CalculatorService {
       default:
         break;
     }
-    return this._display;
+    this.display$.next(this._display);
   }
 
   private clearCalculator() {
