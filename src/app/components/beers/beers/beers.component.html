@@ -2,6 +2,6 @@
 
     <app-beer-select (onSelection)="handleSelection($event)"></app-beer-select>
 
-    <app-beer-list [beers]="showBeers"></app-beer-list>
+    <app-beer-list [beers]="beers | filterBeers : minRange : maxRange | orderBeers : order | async"></app-beer-list>
 
 </div>
