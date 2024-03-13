@@ -18,8 +18,7 @@ export class TemplateFormComponent {
   submitted = false;
 
   onSubmit() { 
-    console.log('Form submitted!');
-    
+    console.log('Form submitted!: ' + JSON.stringify(this.hero));
     this.submitted = true; 
   }
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApodInfoComponent } from './apod-info.component';
+import { ApodService } from '../../../services/apod.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('ApodInfoComponent', () => {
   let component: ApodInfoComponent;
@@ -8,7 +10,8 @@ describe('ApodInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ApodInfoComponent]
+      imports: [ApodInfoComponent],
+      providers: [ApodService, HttpClient, HttpHandler]
     })
     .compileComponents();
     

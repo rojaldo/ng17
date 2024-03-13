@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 function validateHeroName(control: AbstractControl) {
-  const name = control.value;
   // get the name value as a string
   let nameStr = control.value.toString();
   // check that first letter is uppercase
