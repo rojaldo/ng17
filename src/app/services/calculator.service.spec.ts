@@ -47,5 +47,18 @@ describe('CalculatorService', () => {
         expect(value).toBe('0/0=NaN');
       });
     });
+
+    it ('sum 0.1 and 0.2', () => {
+      // private property firstFigure is equal to 0.1
+      service['firstFigure'] = 0.1;
+      // private property operator is equal to '+'
+      service['operator'] = '+';
+      // private property secondFigure is equal to 0.2
+      service['secondFigure'] = 0.2;
+      // call private method calculate
+      const result = service['_calculate']();
+      // private property result is equal to 0.3
+      expect(result).toBeCloseTo(0.3, 8);
+    });
   
 });
