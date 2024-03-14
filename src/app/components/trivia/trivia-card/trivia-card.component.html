@@ -3,7 +3,7 @@
         <h5 class="card-title">{{card.question}}</h5>
         <div class="d-grid gap-2">
             @for (answer of card.answers; track $index) {
-            <button type="button" class="btn btn-primary">
+            <button type="button" [class]="buttonClass[$index]" (click)="handleClick(answer, $index)" [disabled]="card.answered">
                 {{answer}}
             </button>
             }
