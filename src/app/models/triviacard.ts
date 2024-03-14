@@ -8,6 +8,7 @@ export class TriviaCard {
     private _answers: string[] = [];
 
     private _answered = false;
+    private _rightAnswered = false;
 
     constructor(json?: any) {
         if (json) {
@@ -51,5 +52,13 @@ export class TriviaCard {
 
     set answered(value: boolean) {
         this._answered = value;
+    }
+
+    get rightAnswered(): boolean {
+        return this._rightAnswered;
+    }
+
+    set rightAnswered(value: boolean) {
+        this._rightAnswered = value;
     }
 }

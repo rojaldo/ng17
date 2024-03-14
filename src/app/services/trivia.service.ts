@@ -14,11 +14,12 @@ export class TriviaService {
 
   constructor(private http:HttpClient) { }
 
-  getTrivia(){
+  getTrivia(amount = 10){
+    const url = `https://opentdb.com/api.php?amount=${amount}`;
     const observer = {
       next: (response: any) => {
         this._resopnse = response;
-        this._cards = this._resopnse.results.map((card: any) => new TriviaCard(card));
+        this._cards = [...this._cards, ...this._resopnse.results.map((card: any) => new TriviaCard(card))];
         this.cards$.next(this._cards);
       },
       error: (error: any) => {
@@ -28,6 +29,6 @@ export class TriviaService {
         console.log('Completed');
       }
     };
-   this.http.get('https://opentdb.com/api.php?amount=10').subscribe(observer);
+   this.http.get(url).subscribe(observer);
   }
 }
